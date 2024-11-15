@@ -33,8 +33,27 @@
   color: red;
 }
 
+.titleText {
+  margin-bottom: 30px; /* Distanță între titlu și tabla de șah */
+}
+
+.titlu {
+  color: white;
+  display: flex;
+  font-size: 3rem;
+  text-align: center;
+  margin: 0;
+  font-weight: bold;
+}
+
+.movesText {
+  display: flex;
+  flex-direction: row;
+}
+
 .background {
   display: flex;
+  flex-direction: column;
   background-color: #161622;
   align-items: center;
   justify-content: center;

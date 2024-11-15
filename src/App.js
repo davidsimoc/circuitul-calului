@@ -12,7 +12,7 @@ function isValidMove(x, y, board) {
 
 function knightTour(x, y, moveCount, board, moves) {
   if (moveCount == N * N) return true; //Toate pozitiile au fost acoperite
-  for (let i = 0; i < N; i++) {
+  for (let i = 0; i < 8; i++) {
     const nextX = x + moveX[i];
     const nextY = y + moveY[i];
     if (isValidMove(nextX, nextY, board)) {
@@ -51,19 +51,24 @@ function App() {
 
   return (
     <div className='background'>
-      <div className="board">
-        {Array.from({ length: N }).map((_, row) => (
-          <div key={row} className="row">
-            {Array.from({ length: N }).map((_, col) => {
-              const isKnight = row === moves[currentMove]?.[0] && col === moves[currentMove]?.[1];
-              return (
-                <div key={col} className={`square ${(row + col) % 2 === 0 ? 'white' : 'black'} ${isKnight ? 'knight' : ''}`}>
-                  {isKnight && '♞'}
-                </div>
-              );
-            })}
-          </div>
-        ))}
+      <div className='titleText'>
+        <h1 className='titlu'>Circuitul Calului</h1>
+      </div>
+      <div className='movesText'>
+        <div className="board">
+          {Array.from({ length: N }).map((_, row) => (
+            <div key={row} className="row">
+              {Array.from({ length: N }).map((_, col) => {
+                const isKnight = row === moves[currentMove]?.[0] && col === moves[currentMove]?.[1];
+                return (
+                  <div key={col} className={`square ${(row + col) % 2 === 0 ? 'white' : 'black'} ${isKnight ? 'knight' : ''}`}>
+                    {isKnight && '♞'}
+                  </div>
+                );
+              })}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
