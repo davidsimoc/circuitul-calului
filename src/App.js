@@ -10,33 +10,37 @@ function isValidMove(x,y, board) {
     return x >= 0 && y>=0 && x < N && y < N && board[x][y] === -1;
 }
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Hello, world!</h1>
-    </div>
-  );
-}
-
-
 // function App() {
-
-//     return (
-//         <div className="board">
-//             {Array.from({ length: N }).map((_, row) => (
-//                 <div key={row} className="row">
-//                     {Array.from({ length: N }).map((_, col) => {
-//                         const isKnight = row === moves[currentMove]?.[0] && col === moves[currentMove]?.[1];
-//                         return (
-//                             <div key={col} className={`square ${isKnight ? 'knight' : ''}`}>
-//                                 {isKnight && '♞'}
-//                             </div>
-//                         );
-//                     })}
-//                 </div>
-//             ))}
-//         </div>
-//     );
+//   return (
+//     <div className="App">
+//       <h1>Hello, world!</h1>
+//     </div>
+//   );
 // }
+
+
+function App() {
+    const [board, setBoard] = useState(Array(N).fill().map(() => Array(N).fill(-1)));
+    const [moves, setMoves] = useState([]);
+    const [currentMove, setCurrentMove] = useState(0);
+
+
+    return (
+        <div className="board">
+            {Array.from({ length: N }).map((_, row) => (
+                <div key={row} className="row">
+                    {Array.from({ length: N }).map((_, col) => {
+                        const isKnight = row === moves[currentMove]?.[0] && col === moves[currentMove]?.[1];
+                        return (
+                            <div key={col} className={`square ${isKnight ? 'knight' : ''}`}>
+                                {isKnight && '♞'}
+                            </div>
+                        );
+                    })}
+                </div>
+            ))}
+        </div>
+    );
+}
 
 export default App;
