@@ -2,31 +2,55 @@
   display: grid;
   grid-template-columns: repeat(8,1fr);
   grid-template-rows: repeat(8,1fr);
-  width: 90vw;
-  max-width: 600px;
+  width: 95vw;
+  max-width: 700px;
   height: auto;
   margin: 20px auto;
-  border: 2px solid black;
+  border: 2px solid white;
+  border-radius: 5px;
+  aspect-ratio: 1;
 }
 
 .square {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2vw;
+  font-size: 3vw;
   font-weight: bold;
   width: 100%;
   height: 100%;
 }
 
-.square:nth-child(even) {
+.white {
   background-color: #f0d9b5;
 }
 
-.square:nth-child(odd) {
+.black {
   background-color: #b58863;
 }
 
 .knight {
   color: red;
+}
+
+.background {
+  display: flex;
+  background-color: #161622;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+}
+
+@media (max-width: 700px) {
+  .board {
+      width: 100vw;        /* Ocupă întreaga lățime a ecranului */
+      max-width: none;     /* Elimină limita de lățime maximă */
+  }
+
+  .square {
+      font-size: 4vw;      /* Mărește fontul pe ecrane mai mici */
+  }
 }
