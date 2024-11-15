@@ -1,11 +1,11 @@
 .board {
   display: grid;
-  grid-template-columns: repeat(8,1fr);
-  grid-template-rows: repeat(8,1fr);
-  width: 95vw;
-  max-width: 700px;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  width: 80vw; /* Lățimea tablei de șah */
+  max-width: 600px;
   height: auto;
-  margin: 20px auto;
+  margin: 20px;
   border: 2px solid white;
   border-radius: 5px;
   aspect-ratio: 1;
@@ -63,13 +63,20 @@
   padding: 20px;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+/* Media query pentru ecrane mai mici */
 @media (max-width: 700px) {
   .board {
-      width: 100vw;        /* Ocupă întreaga lățime a ecranului */
-      max-width: none;     /* Elimină limita de lățime maximă */
+      width: 100vw; /* Ocupă întreaga lățime a ecranului */
+      height: 100vw; /* Înălțimea devine egală cu lățimea */
+      max-width: none; /* Elimină limita de lățime maximă */
+      max-height: none; /* Elimină limita de înălțime maximă */
   }
 
   .square {
-      font-size: 4vw;      /* Mărește fontul pe ecrane mai mici */
+      font-size: 4vw; /* Mărește fontul pe ecrane mai mici */
   }
 }
