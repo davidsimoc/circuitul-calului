@@ -22,11 +22,11 @@ jobs:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-
     - name: Build the Docker image
       id: docker_build
       env:
         IMAGE_NAME: ghcr.io/${{ github.repository }}/map-project
       run: |
+        echo "IMAGE_NAME=${{ env.IMAGE_NAME }}"
         docker build . --file Dockerfile --tag $IMAGE_NAME:latest
         docker push $IMAGE_NAME:latest
