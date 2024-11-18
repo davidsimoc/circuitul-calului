@@ -22,6 +22,7 @@ jobs:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Build the Docker image
       id: docker_build
       env:
@@ -32,8 +33,7 @@ jobs:
         docker build . --file Dockerfile --tag $FULL_IMAGE_NAME:latest
 
         # Adaugă un tag local simplificat
-        docker tag ghcr.io/repo/map-project:latest map-project:latest
+        docker tag $FULL_IMAGE_NAME:latest $LOCAL_IMAGE_NAME:latest
         
         # Trimite imaginea în registry
         docker push $FULL_IMAGE_NAME:latest
-    
