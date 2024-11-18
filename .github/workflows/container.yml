@@ -29,5 +29,5 @@ jobs:
       run: |
         echo "IMAGE_NAME=${{ env.IMAGE_NAME }}"
         docker build . --file Dockerfile --tag $IMAGE_NAME:latest
-        docker push $IMAGE_NAME:latest
+        docker push ghcr.io/${{ github.repository }}/$IMAGE_NAME:latest
     
