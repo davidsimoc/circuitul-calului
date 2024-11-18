@@ -26,8 +26,8 @@ jobs:
     - name: Build the Docker image
       id: docker_build
       env:
-        FULL_IMAGE_NAME: ghcr.io/${{ github.repository }}/map-project
-        LOCAL_IMAGE_NAME: map-project
+        FULL_IMAGE_NAME: ghcr.io/${{ github.repository }}/map
+        LOCAL_IMAGE_NAME: map
       run: |
         echo "Building Docker image: $FULL_IMAGE_NAME"
         docker build . --file Dockerfile --tag $FULL_IMAGE_NAME:latest
