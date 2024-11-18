@@ -2,9 +2,9 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 jobs:
   build:
@@ -26,14 +26,7 @@ jobs:
     - name: Build the Docker image
       id: docker_build
       env:
-        FULL_IMAGE_NAME: ghcr.io/${{ github.repository }}/map
-        LOCAL_IMAGE_NAME: map
+        IMAGE_NAME: ghcr.io/${{ github.repository }}/map-project
       run: |
-        echo "Building Docker image: $FULL_IMAGE_NAME"
-        docker build . --file Dockerfile --tag $FULL_IMAGE_NAME:latest
-
-        # Adaugă un tag local simplificat
-        docker tag $FULL_IMAGE_NAME:latest $LOCAL_IMAGE_NAME:latest
-        
-        # Trimite imaginea în registry
-        docker push $FULL_IMAGE_NAME:latest
+        docker build . --file Dockerfile --tag $IMAGE_NAME:latest
+        docker push $IMAGE_NAME:latest
