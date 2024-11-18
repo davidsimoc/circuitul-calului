@@ -25,9 +25,11 @@ jobs:
     - name: Build the Docker image
       id: docker_build
       env:
-        IMAGE_NAME: map-project
+        SIMPLE_IMAGE_NAME: map-project
+        FULL_IMAGE_NAME: ghcr.io/${{ github.repository }}/map-project
       run: |
-        echo "IMAGE_NAME=${{ env.IMAGE_NAME }}"
+        echo "IMAGE_NAME=${{ env.FULL_IMAGE_NAME }}"
         docker build . --file Dockerfile --tag $IMAGE_NAME:latest
-        docker push ghcr.io/${{ github.repository }}/$IMAGE_NAME:latest
+        docker tag $SIMPLE_IMAGE_NAME:latest $FULL_IMAGE_NAME:latest
+        docker push $FULL_IMAGE_NAME:latest
     
