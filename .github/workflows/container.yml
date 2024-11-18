@@ -25,11 +25,15 @@ jobs:
     - name: Build the Docker image
       id: docker_build
       env:
-        SIMPLE_IMAGE_NAME: map-project
         FULL_IMAGE_NAME: ghcr.io/${{ github.repository }}/map-project
+        LOCAL_IMAGE_NAME: map-project
       run: |
-        echo "IMAGE_NAME=${{ env.FULL_IMAGE_NAME }}"
-        docker build . --file Dockerfile --tag $IMAGE_NAME:latest
-        docker tag $SIMPLE_IMAGE_NAME:latest $FULL_IMAGE_NAME:latest
+        echo "Building Docker image: $FULL_IMAGE_NAME"
+        docker build . --file Dockerfile --tag $FULL_IMAGE_NAME:latest
+
+        # Adaugă un tag local simplificat
+        docker tag $FULL_IMAGE_NAME:latest $LOCAL_IMAGE_NAME:latest
+
+        # Trimite imaginea în registry
         docker push $FULL_IMAGE_NAME:latest
     
