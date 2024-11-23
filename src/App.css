@@ -49,6 +49,8 @@
 .moves {
   margin-left: 10px;
   display: flex;
+  flex-wrap: wrap;
+  text-align: left;
   max-width: 300px;
 }
 
@@ -58,9 +60,11 @@
   color: white;
 }
 
-.moves ol {
-  list-style: none;
-  padding: 0;
+.moves ul {
+  display: grid;
+  grid-template-columns: repeat(14, 1fr); 
+  gap: 25px;
+  color: white;
 }
 
 .moves li {
@@ -75,7 +79,7 @@
 
 .app {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     gap: 20px;
     padding: 20px;
@@ -96,6 +100,9 @@
 
 .boardAndMoves {
   display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
 }
 
 * {

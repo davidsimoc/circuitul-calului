@@ -26,8 +26,6 @@ function knightTour(x, y, moveCount, board, moves) {
 }
 
 function App() {
-  console.log("Componenta App s-a montat"); // Trebuie să apară în consolă
-
   const [board, setBoard] = useState(Array(N).fill().map(() => Array(N).fill(-1)));
   const [moves, setMoves] = useState([]);
   const [currentMove, setCurrentMove] = useState(0);
@@ -39,7 +37,7 @@ function App() {
     const found = knightTour(0, 0, 1, initialBoard, tourMoves);
 
     //knightTour(0, 0, 1, initialBoard, tourMoves);
-    if(found) {
+    if (found) {
       console.log('Tour moves:', tourMoves); // Debugging
       setBoard(initialBoard);
       setMoves(tourMoves);
@@ -48,6 +46,8 @@ function App() {
 
   useEffect(() => {
     if (currentMove < moves.length) {
+      console.log("Mutările salvate:", moves);
+
       const timer = setTimeout(() => {
         setCurrentMove((prev) => prev + 1);
       }, 500);
@@ -76,17 +76,15 @@ function App() {
               </div>
             ))}
           </div>
-          <div className='moves'>
-            <h2>Moves:</h2>
-            <ol>
-              {moves.map(([row, col], index) => {
-                        console.log(`Move ${index + 1}: (${row + 1}, ${col + 1})`); // Debugging
-
-                <li key={index} className={index === currentMove ? 'current-move' : ''}>
-                  Move {index + 1}: ({row + 1}, {col + 1})
+          <div className="moves">
+            <h2>Mutările calului:</h2>
+            <ul>
+              {moves.map(([x, y], index) => (
+                <li key={index}>
+                  Mutare {index + 1}: ({x}, {y})
                 </li>
-              })}
-            </ol>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
