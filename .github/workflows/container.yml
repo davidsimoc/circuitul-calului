@@ -29,10 +29,10 @@ jobs:
       with:
         images: davidsimoc/circuitul-calului
         
-    - name: Build and push Docker image
+    - name: Build the Docker image
       id: docker_build
       env:
-        IMAGE_NAME: ghcr.io/${{ github.repository }}/circuitul-calului
-      run:
+        IMAGE_NAME: ghcr.io/${{ github.repository }}/map-project
+      run: |
         docker build . --file Dockerfile --tag $IMAGE_NAME:latest
         docker push $IMAGE_NAME:latest
