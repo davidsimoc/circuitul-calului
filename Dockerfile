@@ -20,7 +20,7 @@ RUN npm run build
 RUN npm install -g serve
 
 # 8. Expunem portul pe care va rula aplicația
-EXPOSE 5000
+EXPOSE 8000
 
 # 9. Setăm comanda care va porni aplicația în container
-CMD ["serve", "-s", "build", "-l", "5000"]
+CMD ["serve", "-s", "build", "-l", "8000"]
