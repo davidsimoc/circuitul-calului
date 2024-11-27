@@ -89,39 +89,48 @@ function App() {
   }, [currentMove, moves]);
 
   return (
-    <div className='app'>
-      <div className='titleText'>
-        <h1 className='titlu'>Circuitul Calului</h1>
+    <div className="app">
+      <div className="titleText">
+        <h1 className="titlu">Circuitul Calului</h1>
       </div>
-      <div className='boardAndMoves'>
-        <div className="board">
-          {Array.from({ length: N }).map((_, row) => (
-            <div key={row} className="row">
-              {Array.from({ length: N }).map((_, col) => {
-                const isKnight = row === moves[currentMove]?.[0] && col === moves[currentMove]?.[1];
-                return (
-                  <div key={col} className={`square ${(row + col) % 2 === 0 ? 'white' : 'black'} ${isKnight ? 'knight' : ''}`}>
-                    {isKnight && '♞'}
-                  </div>
-                );
-              })}
-            </div>
-          ))}
-        </div>
-        <div className="moves">
-          <h2>Mutările calului:</h2>
-          <ul>
-            {moves.map(([x, y], index) => (
-              <li key={index}>
-                Mutare {index + 1}: ({x}, {y})
-              </li>
+      <div className="mainContent">
+        <div className="boardAndMoves">
+          <div className="board">
+            {Array.from({ length: N }).map((_, row) => (
+              <div key={row} className="row">
+                {Array.from({ length: N }).map((_, col) => {
+                  const isKnight = row === moves[currentMove]?.[0] && col === moves[currentMove]?.[1];
+                  return (
+                    <div
+                      key={col}
+                      className={`square ${(row + col) % 2 === 0 ? 'white' : 'black'} ${isKnight ? 'knight' : ''
+                        }`}
+                    >
+                      {isKnight && '♞'}
+                    </div>
+                  );
+                })}
+              </div>
             ))}
-          </ul>
+          </div>
+          <div className="moves">
+            <h2>Mutările calului:</h2>
+            <ul>
+              {moves.map(([x, y], index) => (
+                <li key={index}>
+                  <div className="move">
+                    <span className="moveNumber">Mutarea {index + 1}:<br /></span>
+                    <span className="coordinates">({x}, {y})</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   );
-  
+
 }
 
 export default App;
