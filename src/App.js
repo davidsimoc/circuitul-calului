@@ -60,9 +60,17 @@ function knightTour(x, y, moveCount, board, moveHistory) {
 }
 
 function App() {
+  //useState - hook, foloseste starea(datele pot fi actualizate)
+
+  //.fill() - umple array-ul cu undefined 
+  //.map(() => Array(N).fill(-1)) - pentru fiecare element din array cream un alt array toate val -1
   const [board, setBoard] = useState(Array(N).fill().map(() => Array(N).fill(-1)));
+  //in moves stocam miscarile calului; - initial un array go;
   const [moves, setMoves] = useState([]);
+  //currentMoves urmareste pozitia curenta a calului - initial 0 adica calul nu a facut nici o miscare
   const [currentMove, setCurrentMove] = useState(0);
+  //useRed - pastreaza o valoare care nu are nevoie de randarea componentei cand se schimba
+  //pastreaza istoricul miscarilor calului
   const moveHistoryRef = useRef([]);
 
   useEffect(() => {
