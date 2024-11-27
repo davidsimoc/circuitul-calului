@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react'
-import './App.css'
-const N = 8;
+import React, { useState, useEffect, useRef } from 'react';
+import './App.css';
 
+const N = 8;
 const moveX = [2, 1, -1, -2, -2, -1, 1, 2];
 const moveY = [1, 2, 2, 1, -1, -2, -2, -1];
 
+// Verifică dacă mișcarea este validă
 function isValidMove(x, y, board) {
   return x >= 0 && y >= 0 && x < N && y < N && board[x][y] === -1;
 }
 
+// Numără mișcările valide posibile
 function getValidMovesCount(x, y, board) {
   let count = 0;
   for (let i = 0; i < 8; i++) {
@@ -21,11 +23,12 @@ function getValidMovesCount(x, y, board) {
   return count;
 }
 
-function knightTour(x, y, moveCount, board, moves) {
-  if (moveCount === N * N) return true; //Toate pozitiile au fost acoperite
+// Funcția recursivă pentru turul calului
+function knightTour(x, y, moveCount, board, moveHistory) {
+  if (moveCount === N * N) return true;
 
-  //Cream o lista cu mutarile posibile(indexuri) si o sortam
   let moveOptions = [];
+  // Căutăm mișcările posibile
   for (let i = 0; i < 8; i++) {
     const nextX = x + moveX[i];
     const nextY = y + moveY[i];
@@ -34,22 +37,25 @@ function knightTour(x, y, moveCount, board, moves) {
       moveOptions.push({ move: i, x: nextX, y: nextY, validMovesCount });
     }
   }
-  console.log(moveOptions); // Vezi ce conține array-ul
 
-  //Sortam mutariile in ordine crescatoare
+  // Sortăm mișcările pentru a alege calea cu cele mai puține opțiuni
   moveOptions.sort((a, b) => a.validMovesCount - b.validMovesCount);
 
-  //Iteram si incercam sa gasim o solutie
   for (let i = 0; i < 8; i++) {
     const { x: nextX, y: nextY } = moveOptions[i];
     board[nextX][nextY] = moveCount;
-    moves.push([nextX, nextY]);
-    if (knightTour(nextX, nextY, moveCount + 1, board, moves)) return true;
+    moveHistory.push([nextX, nextY]);
 
-    //backtracking: anulam mutarea
-    board[moveX][moveY] = -1;
-    moves.pop();
+    // Recursivitate
+    if (knightTour(nextX, nextY, moveCount + 1, board, moveHistory)) {
+      return true;
+    }
+
+    // Backtracking
+    board[nextX][nextY] = -1;
+    moveHistory.pop();
   }
+
   return false;
 }
 
@@ -57,30 +63,25 @@ function App() {
   const [board, setBoard] = useState(Array(N).fill().map(() => Array(N).fill(-1)));
   const [moves, setMoves] = useState([]);
   const [currentMove, setCurrentMove] = useState(0);
+  const moveHistoryRef = useRef([]);
 
   useEffect(() => {
     const initialBoard = Array(N).fill().map(() => Array(N).fill(-1));
-
-    //Alege aleatoriu un punct de start pentru cal
     const startX = Math.floor(Math.random() * N);
     const startY = Math.floor(Math.random() * N);
-
     initialBoard[startX][startY] = 0;
-    const tourMoves = [[startX, startY]];
-    const found = knightTour(startX, startY, 1, initialBoard, tourMoves);
+    setBoard(initialBoard);
+    setMoves([[startX, startY]]);
+    moveHistoryRef.current = [[startX, startY]];
 
-    //knightTour(0, 0, 1, initialBoard, tourMoves);
-    if (found) {
-      console.log('Tour moves:', tourMoves); // Debugging
-      setBoard(initialBoard);
-      setMoves(tourMoves);
+    // Începem turul calului
+    if (knightTour(startX, startY, 1, initialBoard, moveHistoryRef.current)) {
+      setMoves(moveHistoryRef.current);
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
-    if (currentMove < moves.length) {
-      console.log("Mutările salvate:", moves);
-
+    if (moves.length > currentMove) {
       const timer = setTimeout(() => {
         setCurrentMove((prev) => prev + 1);
       }, 500);
@@ -100,13 +101,14 @@ function App() {
               <div key={row} className="row">
                 {Array.from({ length: N }).map((_, col) => {
                   const isKnight = row === moves[currentMove]?.[0] && col === moves[currentMove]?.[1];
+                  const isVisited = moves.slice(0, currentMove).some(([x, y]) => x === row && y === col);
                   return (
                     <div
                       key={col}
-                      className={`square ${(row + col) % 2 === 0 ? 'white' : 'black'} ${isKnight ? 'knight' : ''
-                        }`}
+                      className={`square ${(row + col) % 2 === 0 ? 'white' : 'black'} ${isKnight ? 'knight' : ''} ${isVisited ? 'visited' : ''}`}
+                      style={isVisited ? { opacity: 0.3 } : {}}
                     >
-                      {isKnight && '♞'}
+                      {isKnight ? '♞' : ''}
                     </div>
                   );
                 })}
@@ -130,7 +132,6 @@ function App() {
       </div>
     </div>
   );
-
 }
 
 export default App;

@@ -122,6 +122,10 @@ html, body {
   gap: 20px; 
 }
 
+.visited {
+  opacity: 0.5;
+}
+
 * {
   box-sizing: border-box;
 }
