@@ -104,24 +104,36 @@ function App() {
       </div>
       <div className="mainContent">
         <div className="boardAndMoves">
-          <div className="board">
-            {Array.from({ length: N }).map((_, row) => (
-              <div key={row} className="row">
-                {Array.from({ length: N }).map((_, col) => {
-                  const isKnight = row === moves[currentMove]?.[0] && col === moves[currentMove]?.[1];
-                  const isVisited = moves.slice(0, currentMove).some(([x, y]) => x === row && y === col);
-                  return (
-                    <div
-                      key={col}
-                      className={`square ${(row + col) % 2 === 0 ? 'white' : 'black'} ${isKnight ? 'knight' : ''} ${isVisited ? 'visited' : ''}`}
-                      style={isVisited ? { opacity: 0.3 } : {}}
-                    >
-                      {isKnight ? '♞' : ''}
-                    </div>
-                  );
-                })}
-              </div>
-            ))}
+          <div className="boardWrapper">
+            <div className="colLabelsTop">
+              {Array.from({ length: N }).map((_, index) => (
+                <div key={index} className="colLabel">{index}</div>
+              ))}
+            </div>
+            <div className="rowLabelsLeft">
+              {Array.from({ length: N }).map((_, index) => (
+                <div key={index} className="rowLabel">{index}</div>
+              ))}
+            </div>
+            <div className="board">
+              {Array.from({ length: N }).map((_, row) => (
+                <div key={row} className="row">
+                  {Array.from({ length: N }).map((_, col) => {
+                    const isKnight = row === moves[currentMove]?.[0] && col === moves[currentMove]?.[1];
+                    const isVisited = moves.slice(0, currentMove).some(([x, y]) => x === row && y === col);
+                    return (
+                      <div
+                        key={col}
+                        className={`square ${(row + col) % 2 === 0 ? 'white' : 'black'} ${isKnight ? 'knight' : ''} ${isVisited ? 'visited' : ''}`}
+                        style={isVisited ? { opacity: 0.3 } : {}}
+                      >
+                        {isKnight ? '♞' : ''}
+                      </div>
+                    );
+                  })}
+                </div>
+              ))}
+            </div>
           </div>
           <div className="moves">
             <h2>Mutările calului:</h2>

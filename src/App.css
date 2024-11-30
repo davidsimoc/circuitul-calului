@@ -89,7 +89,7 @@ html, body {
 
 .moves ul {
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
+  grid-template-columns: repeat(9, 1fr);
   color: white;
   gap: 10px; 
   margin-left: -20px;
@@ -120,6 +120,7 @@ html, body {
   justify-content: flex-start; 
   align-items: flex-start; 
   gap: 20px; 
+  margin-left: 30px;
 }
 
 .visited {
@@ -142,4 +143,36 @@ html, body {
   .square {
       font-size: 4vw; /* Mărește fontul pe ecrane mai mici */
   }
+}
+
+.boardWrapper {
+  display: flex;
+  position: relative;
+  top: 40px;
+}
+
+.colLabelsTop {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: -20px;
+  left: 40px;
+  right: 40px;
+  z-index: 2;
+}
+
+.rowLabelsLeft {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  top: 40px;
+  bottom: 40px;
+  left: -20px;
+}
+
+.colLabel, .rowLabel {
+  color: white;
+  size: 1rem;
+  font-weight: bold;
 }
