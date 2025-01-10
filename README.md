@@ -1,8 +1,8 @@
 # Circuitul calului 
 
-#### Această problemă determină mutările calului astfel încât toate pozițiile tablei să fie acoperite
+## Această problemă determină mutările calului astfel încât toate pozițiile tablei să fie acoperite
 
-#### Repository-ul conține urmatoarele fisiere: 
+## Repository-ul conține urmatoarele fisiere: 
 
 * Fișierele care au fost necesare pentru crearea si rularea site-ului folosind React
 
@@ -10,4 +10,4 @@
 
 * Fișierul .yml pentru a automatiza programul prin construirea și publicarea imaginii in package pe github 
 
-#### Instalare și Rulare
+## Instalare și Rulare
