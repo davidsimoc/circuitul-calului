@@ -20,4 +20,6 @@
 
 ## Vizualizare
 
+O reprezentare vizuala care arata in timp real cum se mișcă pe tabla de șah calul, începând de la o pozitie aleatoare, iar în partea dreaptă se afla lista finala de mutari ale calului pentru a acoperi întreaga tablă.
+
 ![](image.png)
