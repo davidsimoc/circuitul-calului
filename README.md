@@ -23,3 +23,11 @@
 O reprezentare vizuala care arata in timp real cum se mișcă pe tabla de șah calul, începând de la o pozitie aleatoare, iar în partea dreaptă se afla lista finala de mutari ale calului pentru a acoperi întreaga tablă.
 
 ![](image.png)
+
+Soluția se va schimba la fiecare refresh al paginii.
+
+## Bibliografie
+
+* Documentație React oficiala: https://react.dev/learn
+
+
