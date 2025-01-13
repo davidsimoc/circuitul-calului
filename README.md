@@ -12,7 +12,8 @@
 
 ## Instalare și Rulare
 
-1. Instalarea package-ului **circuitul-calului** prin comanda: docker pull ghcr.io/davidsimoc/circuitul-calului/circuitul-calului:latest
+1. Instalarea package-ului **circuitul-calului** prin comanda: 
+docker pull ghcr.io/davidsimoc/circuitul-calului/circuitul-calului:latest
 
 2. Rularea imaginii cu comanda: docker run -d -p 8000:8000 ghcr.io/davidsimoc/circuitul-calului/circuitul-calului:latest
 
