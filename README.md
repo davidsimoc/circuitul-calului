@@ -18,3 +18,6 @@
 
 3. Pentru a vizualiza se va accesa link-ul: http://localhost:8000
 
+## Vizualizare
+
+![](image.png)
